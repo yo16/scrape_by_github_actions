@@ -1,0 +1,1 @@
+from .TeckFundingNews import scrape_tech_funding_news_list
