@@ -1,2 +1,2 @@
-# crawl_by_github_actions
-github Actionsでpythonでクローリングする
+# scrape_by_github_actions
+github Actionsでpythonでスクレイピングする
