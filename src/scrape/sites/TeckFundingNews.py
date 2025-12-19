@@ -38,7 +38,9 @@ def scrape_tech_funding_news_list(category):
 
     article_list = []
 
-    response = requests.get(f"{BASE_URL}category/{category}", headers=HEADERS, verify=False)
+    url = f"{BASE_URL}category/{category}"
+    print(f"url: {url}")
+    response = requests.get(url, headers=HEADERS, verify=False)
     
     soup = BeautifulSoup(response.text, "html.parser")
     print(soup.prettify())
