@@ -1,6 +1,8 @@
 """
 Google Spread Sheetsにデータを書き込む
 """
+import os
+import json
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 
@@ -8,17 +10,19 @@ SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",
 ]
 
-SERVICE_ACCOUNT_FILE = "credentials/service_account.json"
+# SERVICE_ACCOUNT_FILE = "credentials/service_account.json"
 
 SPREADSHEET_ID = "1TBpDvJOayrXaqNz4BOi2cB2zVMMMkgUoIKYqJCLduq0"
 SHEET_NAME = "ScrapedData"
 
 
 def write_to_google_sheets(article_list):
-    creds = Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE,
-        scopes=SCOPES
-    )
+    # creds = Credentials.from_service_account_file(
+    #     SERVICE_ACCOUNT_FILE,
+    #     scopes=SCOPES
+    # )
+    json_str = os.environ["GOOGLE_SERVICE_ACCOUNT_JSON"]
+    creds = Credentials.from_service_account_info(json.loads(json_str))
     
     service = build("sheets", "v4", credentials=creds)
 

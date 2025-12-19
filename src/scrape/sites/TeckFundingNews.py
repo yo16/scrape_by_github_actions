@@ -96,10 +96,8 @@ def scrape_tech_funding_news_list(category):
                 article_tags
             ])
     
+    # 2次元配列を返す
     return article_list
-
-        
-
 
 
 if __name__ == "__main__":
