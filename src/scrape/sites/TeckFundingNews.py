@@ -41,8 +41,13 @@ def scrape_tech_funding_news_list(category):
     url = f"{BASE_URL}category/{category}"
     print(f"url: {url}")
     response = requests.get(url, headers=HEADERS, verify=False)
+    print("status:", r.status_code)
+    print("len:", len(r.text))
+    print("server:", r.headers.get("server"))
+    print("cf-ray:", r.headers.get("cf-ray"))
     
     soup = BeautifulSoup(response.text, "html.parser")
+    print("title:", soup.title.text if soup.title else None)
     print(soup.prettify())
 
     # selector:
