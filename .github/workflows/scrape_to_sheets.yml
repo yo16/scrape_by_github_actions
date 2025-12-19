@@ -2,8 +2,9 @@ name: scrape-to-sheets
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *'
+  # 手動のみとするためコメントアウト
+  #schedule:
+  #  - cron: '0 0 * * *'
 
 jobs:
   deployment:
