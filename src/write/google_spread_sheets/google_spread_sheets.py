@@ -30,7 +30,7 @@ def write_to_google_sheets(article_list):
 
     # データを追加（appendメソッドは自動的に最終行の後に追加）
     if article_list:  # データが空でないことを確認
-        sheet.values().append(
+        res = sheet.values().append(
             spreadsheetId=SPREADSHEET_ID,
             range=SHEET_NAME,
             valueInputOption="USER_ENTERED",
@@ -38,4 +38,6 @@ def write_to_google_sheets(article_list):
                 "values": article_list
             }
         ).execute()
+
+        print("append result:", res)
 
