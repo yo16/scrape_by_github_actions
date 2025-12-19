@@ -9,6 +9,9 @@ def main():
     #print("len of article_list:", len(article_list))
     if len(article_list) == 0:
         print("error: article_list is empty")
+        raise RuntimeError(
+            "error: article_list is empty"
+        )
         return
 
     # データをGoogle Sheetsに書き込む
