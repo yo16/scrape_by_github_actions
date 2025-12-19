@@ -34,6 +34,8 @@ HEADERS = {
 
 
 def scrape_tech_funding_news_list(category):
+    print(f"start scraping {category}")
+
     article_list = []
 
     response = requests.get(f"{BASE_URL}category/{category}", headers=HEADERS, verify=False)
@@ -45,8 +47,8 @@ def scrape_tech_funding_news_list(category):
     # #primary > div.cs-posts-area.cs-posts-area-posts > div.cs-posts-area__outer > div > article
     articles = soup.select("main #primary > div.cs-posts-area.cs-posts-area-posts > div.cs-posts-area__outer > div > article")
     #print(f"found {len(articles)} articles")
-    for article in articles:
-        #print("found article")
+    for i, article in enumerate(articles):
+        print(f"found article {i+1}")
         div_content = article.select_one("div.cs-entry__outer > div.cs-entry__inner.cs-entry__content")
         if div_content:
             # 取得する情報の初期化
