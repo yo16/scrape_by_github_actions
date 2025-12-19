@@ -41,7 +41,7 @@ def scrape_tech_funding_news_list(category):
     response = requests.get(f"{BASE_URL}category/{category}", headers=HEADERS, verify=False)
     
     soup = BeautifulSoup(response.text, "html.parser")
-    #print(soup.prettify())
+    print(soup.prettify())
 
     # selector:
     # #primary > div.cs-posts-area.cs-posts-area-posts > div.cs-posts-area__outer > div > article
