@@ -34,28 +34,33 @@ HEADERS = {
 
 
 def scrape_tech_funding_news_list(category):
-    print(f"start scraping {category}")
+    #print(f"start scraping {category}")
 
     article_list = []
 
     url = f"{BASE_URL}category/{category}"
     print(f"url: {url}")
     response = requests.get(url, headers=HEADERS, verify=False)
-    print("status:", response.status_code)
-    print("len:", len(response.text))
-    print("server:", response.headers.get("server"))
-    print("cf-ray:", response.headers.get("cf-ray"))
+
+    if response.status_code != 200:
+        print("error: status code is not 200")
+
+        print("status:", response.status_code)
+        print("len:", len(response.text))
+        print("server:", response.headers.get("server"))
+        print("cf-ray:", response.headers.get("cf-ray"))
+        return []
     
     soup = BeautifulSoup(response.text, "html.parser")
-    print("title:", soup.title.text if soup.title else None)
-    print(soup.prettify())
+    #print("title:", soup.title.text if soup.title else None)
+    #print(soup.prettify())
 
     # selector:
     # #primary > div.cs-posts-area.cs-posts-area-posts > div.cs-posts-area__outer > div > article
     articles = soup.select("main #primary > div.cs-posts-area.cs-posts-area-posts > div.cs-posts-area__outer > div > article")
     #print(f"found {len(articles)} articles")
     for i, article in enumerate(articles):
-        print(f"found article {i+1}")
+        #print(f"found article {i+1}")
         div_content = article.select_one("div.cs-entry__outer > div.cs-entry__inner.cs-entry__content")
         if div_content:
             # 取得する情報の初期化
